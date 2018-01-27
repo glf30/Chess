@@ -6,7 +6,25 @@ import java.util.Scanner;
 
 public class ChessMain{
 	
-	
+	/*
+		 WHITE
+		0 - Queen
+		1 - King
+		2 - Rook
+		3 - Bishop
+		4 - Knight
+		5 - Pawn
+
+		BLACK
+		6 - Queen
+		7 - King
+		8 - Rook
+		9 - Bishop
+		10 - Knight
+		11 - Pawn 
+		  
+		  
+		 */
 	
 	
 public static void main(String[] args) {
