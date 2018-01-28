@@ -2,6 +2,7 @@ package chess.app;
 
 
 
+
 public class Queen{
 	
 	char color;
