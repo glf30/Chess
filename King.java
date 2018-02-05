@@ -10,7 +10,7 @@ public class King{
 	int posX = 0;
 	int posY = 0;
 	
-	public King(char color, int x, int y) {
+	public King(char color) {
 		this.color = color;
 		
 		if(color == 'b') {
@@ -46,7 +46,7 @@ public class King{
 	
 	
 	
-	public boolean validMovement(int x, int y){
+	public boolean validMovement(int posX, int posY, int x, int y){
 		
 		/*	List formatted as
 		 * 	[a][1]
@@ -56,7 +56,7 @@ public class King{
 		 */
 		int[][] validMovements =  new int[8][2];
 		
-		validMovements[0][0] = posX
+		validMovements[0][0] = posX;
 		validMovements[0][1] = posY + 1;
 		
 		validMovements[1][0] = posX;

@@ -19,8 +19,8 @@ public class Pawn{
 			 code = 11;
 		}
 		else if(color == 'w') {
-			posX = 3;
-			posY = 7;
+			posX = x;
+			posY = y;
 			code = 5;
 		}
 		
@@ -46,32 +46,58 @@ public class Pawn{
 	
 	
 	
-	public boolean validMovement(int x, int y){
+	//public boolean validMovement(int x, int y){
+	public boolean validMovement(int code, int fromX, int fromY, int toX, int toY) {	
 
-		int distY = y - posY;
-		int distX = Math.abs(x - posX); //Should be 0 most of the time, 1 for attacking
-		boolean valid = false;
+		int distY = toY - fromY;
+		int distX = Math.abs(toX - fromX); //Should be 0 most of the time, 1 for attacking
+		//boolean valid = false;
 	
 		//Check if position is at the start, then movement is allowed by two units
+		System.out.println("FROM " + fromY);
+		System.out.println("DIST " + distY);
+		//CHANGE FOR BLACK AND WHITE
+		if(code == 5) {
 		
-		if(distY == 2 && posY == 6)
-		{
-			this.posY = y;
-			valid = true;
+		
+			if(distY == -2 && fromY == 6)
+			{
+				//this.posY = y;
+				
+				return true;
+			}
+			else if(distY == -1)
+			{
+				//this.posY = y;
+			
+				return true;
+			}
+		
+		} else if(code == 11) {
+			
+			if(distY == 2 && fromY == 1)
+			{
+				//this.posY = y;
+				
+				return true;
+			}
+			else if(distY == 1)
+			{
+				//this.posY = y;
+			
+				return true;
+			}
+			
+			
+			
+			
 		}
-		else if(distY == 1)
-		{
-			this.posY = y;
-			valid = true;
-		}
-		
-		
 		
 		
 		
 		//Else
 		
-		System.out.println("Move not allowed");
+		System.out.println("Move NOT allowed");
 		return false;
 	}
 

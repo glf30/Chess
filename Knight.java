@@ -19,8 +19,8 @@ public class Knight{
 			 code = 10;
 		}
 		else if(color == 'w') {
-			posX = 3;
-			posY = 7;
+			posX = x;
+			posY = y;
 			code = 4;
 		}
 		
@@ -46,7 +46,7 @@ public class Knight{
 	
 	
 	
-	public boolean validMovement(int x, int y){
+	public boolean validMovement(int posX, int posY, int x, int y){
 		
 		/*	List formatted as
 		 * 	[a][1]
