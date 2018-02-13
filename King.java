@@ -54,6 +54,79 @@ public class King{
 		 * 	...
 		 * 	[h][8]
 		 */
+		
+		if(posX == 4 && posY == 0){
+			if(x == 6 && y == 0) {
+				if(Board.board[7][0] == 8 &&(Board.board[6][0] == 12 || Board.board[6][0] == 13) 
+						&& (Board.board[5][0] == 12 || Board.board[5][0] == 13)) {
+					Board.board[7][0] = 13;
+					Board.board[5][0] = 8;
+					
+					
+					
+					return true;
+				} 
+				
+				
+				
+				
+			} else if(x == 2 && y == 0) {
+				if(Board.board[0][0] == 8 &&(Board.board[1][0] == 12 || Board.board[1][0] == 13) 
+						&& (Board.board[2][0] == 12 || Board.board[2][0] == 13)
+						&& (Board.board[3][0] == 12 || Board.board[3][0] == 13)) {
+					
+					Board.board[0][0] = 12;
+					Board.board[3][0] = 8;
+					
+					
+					
+					
+					return true;
+				}
+				
+				
+				
+				
+			}
+			
+			
+		} else if(posX == 4 && posY == 7 && x == 6 && y == 7) {
+			if(x == 6 && y == 7) {
+				if(Board.board[7][7] == 2 &&(Board.board[6][7] == 12 || Board.board[6][7] == 13) 
+						&& (Board.board[5][7] == 12 || Board.board[5][7] == 13)) {
+					
+					Board.board[7][7] = 12;
+					Board.board[5][7] = 2;
+					
+					
+					return true;
+				} 
+				
+				
+				
+			} else if(x == 2 && y == 7) {
+				if(Board.board[0][7] == 2 &&(Board.board[1][7] == 12 || Board.board[1][7] == 13) 
+						&& (Board.board[2][7] == 12 || Board.board[2][7] == 13)
+						&& (Board.board[3][7] == 12 || Board.board[3][7] == 13)) {
+					
+					Board.board[0][7] = 13;
+					Board.board[3][7] = 2;
+					
+					
+					
+					
+					return true;
+				}
+				
+				
+				
+				
+			}
+			
+			
+		}
+		
+		
 		int[][] validMovements =  new int[8][2];
 		
 		validMovements[0][0] = posX;
@@ -93,7 +166,7 @@ public class King{
 		
 		//Else
 		
-		System.out.println("Move not allowed");
+		System.out.println("Illegal move, try again");
 		return valid;
 	}
 

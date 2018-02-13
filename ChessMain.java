@@ -51,31 +51,31 @@ public static void main(String[] args) {
 	Knight bKnight;
 	
 	//String alt = "  ";
-	int board[][] = new int[8][8];
+	//int board[][] = new int[8][8];
 	while(rank <8) {
 		x = 0;
 		while(x<8) {
 			if(rank == 1) {
-				bPawn = new Pawn('b', x, 1);
+				/*bPawn = new Pawn('b', x, 1);
 				board[x][rank] = bPawn.code;
 				x++; 
-				continue; 
+				continue; */
 				//	board[x][rank] = "bp";
 			}
 			
 			if(rank == 6) {
-				wPawn = new Pawn('w', x, 6);
+				/* wPawn = new Pawn('w', x, 6);
 				board[x][rank] = wPawn.code;
 				x++;
-				continue; 
+				continue; */
 				//board[x][rank] = "wp";
 			}
 		
-			board[x][rank] = 12;
+			Board.board[x][rank] = 12;
 			if(rank%2 == 0 && x %2 != 0) {
-				board[x][rank] = 13;
+				Board.board[x][rank] = 13;
 			} else if(rank%2 != 0 &&  x%2 == 0){
-				board[x][rank] = 13;
+				Board.board[x][rank] = 13;
 			}
 			
 			
@@ -92,88 +92,88 @@ public static void main(String[] args) {
 	//set up board
 	Piece currPiece = new Piece();
 	
-	wQueen = new Queen('w',board);
+	wQueen = new Queen('w');
 	int posx = wQueen.getPosX();
 	int posy = wQueen.getPosY();
-	board[posx][posy] = wQueen.getCode();
+	Board.board[posx][posy] = wQueen.getCode();
 	
-	bQueen = new Queen('b',board);
+	bQueen = new Queen('b');
 	posx = bQueen.getPosX();
 	posy = bQueen.getPosY();
-	board[posx][posy] = bQueen.getCode();
+	Board.board[posx][posy] = bQueen.getCode();
 	
 	wKing = new King('w');
 	posx = wKing.getPosX();
 	posy = wKing.getPosY();
-	board[posx][posy] = wKing.getCode();
+	Board.board[posx][posy] = wKing.getCode();
 	
 	bKing = new King('b');
 	posx = bKing.getPosX();
 	posy = bKing.getPosY();
-	board[posx][posy] = bKing.getCode();
+	Board.board[posx][posy] = bKing.getCode();
 	
-	wRook = new Rook('w',0, 7,board);
+	wRook = new Rook('w',0, 7);
 	posx = wRook.getPosX();
 	posy = wRook.getPosY();
-	board[posx][posy] = wRook.getCode();
+	Board.board[posx][posy] = wRook.getCode();
 	
-	wRook = new Rook('w',7, 7,board);
+	wRook = new Rook('w',7, 7);
 	posx = wRook.getPosX();
 	posy = wRook.getPosY();
-	board[posx][posy] = wRook.getCode();
+	Board.board[posx][posy] = wRook.getCode();
 	
-	bRook = new Rook('b',0, 0,board);
+	bRook = new Rook('b',0, 0);
 	posx = bRook.getPosX();
 	posy = bRook.getPosY();
-	board[posx][posy] = bRook.getCode();
+	Board.board[posx][posy] = bRook.getCode();
 	
-	bRook = new Rook('b',7, 0,board);
+	bRook = new Rook('b',7, 0);
 	posx = bRook.getPosX();
 	posy = bRook.getPosY();
-	board[posx][posy] = bRook.getCode();
+	Board.board[posx][posy] = bRook.getCode();
 	
 	
 	wKnight = new Knight('w',1,7);
 	posx = wKnight.getPosX();
 	posy = wKnight.getPosY();
-	board[posx][posy] = wKnight.getCode();
+	Board.board[posx][posy] = wKnight.getCode();
 	
 	wKnight = new Knight('w',6,7);
 	posx = wKnight.getPosX();
 	posy = wKnight.getPosY();
-	board[posx][posy] = wKnight.getCode();
+	Board.board[posx][posy] = wKnight.getCode();
 	
 	
 	bKnight = new Knight('b',1,0);
 	posx = bKnight.getPosX();
 	posy = bKnight.getPosY();
-	board[posx][posy] = bKnight.getCode();
+	Board.board[posx][posy] = bKnight.getCode();
 	
 	bKnight = new Knight('b',6,0);
 	posx = bKnight.getPosX();
 	posy = bKnight.getPosY();
-	board[posx][posy] = bKnight.getCode();
+	Board.board[posx][posy] = bKnight.getCode();
 	
 	
-	wBishop = new Bishop('w',2, 7,board);
+	wBishop = new Bishop('w',2, 7);
 	posx = wBishop.getPosX();
 	posy = wBishop.getPosY();
-	board[posx][posy] = wBishop.getCode();
+	Board.board[posx][posy] = wBishop.getCode();
 	
-	wBishop = new Bishop('w',5, 7,board);
+	wBishop = new Bishop('w',5, 7);
 	posx = wBishop.getPosX();
 	posy = wBishop.getPosY();
-	board[posx][posy] = wBishop.getCode();
+	Board.board[posx][posy] = wBishop.getCode();
 	
-	bBishop = new Bishop('b',2, 0,board);
+	bBishop = new Bishop('b',2, 0);
 	posx = bBishop.getPosX();
 	posy = bBishop.getPosY();
-	board[posx][posy] = bBishop.getCode();
+	Board.board[posx][posy] = bBishop.getCode();
 	
-	bBishop = new Bishop('b',5, 0,board);
+	bBishop = new Bishop('b',5, 0);
 	posx = bBishop.getPosX();
 	posy = bBishop.getPosY();
-	board[posx][posy] = bBishop.getCode();
+	Board.board[posx][posy] = bBishop.getCode();
 	
 	
 	
@@ -188,7 +188,7 @@ public static void main(String[] args) {
 	board[posx][posy] = wPawn.getCode();*/
 	
 	
-	printBoard(board);	
+	printBoard(Board.board);	
 	
 	boolean valid = false;
 	Scanner sr;
@@ -241,28 +241,28 @@ public static void main(String[] args) {
 				
 				currPiece.posX = fromx;
 				currPiece.posY = fromy;
-				if(board[fromx][fromy] != 0 && board[fromx][fromy] != 1 && board[fromx][fromy] != 2 &&
-						board[fromx][fromy] != 3 && board[fromx][fromy] != 4 && board[fromx][fromy] != 5) {
-					System.out.println("Not a White piece " + board[fromx][fromy]);
+				if(Board.board[fromx][fromy] != 0 && Board.board[fromx][fromy] != 1 && Board.board[fromx][fromy] != 2 &&
+						Board.board[fromx][fromy] != 3 && Board.board[fromx][fromy] != 4 && Board.board[fromx][fromy] != 5) {
+					System.out.println("Not a White piece " + Board.board[fromx][fromy]);
 					continue;
 					
 				}
 				//valid = valid(wQueen.validMovement(tox, toy));
-				if(board[tox][toy] != 12 && board[tox][toy] != 13 && board[tox][toy] != 6 && board[tox][toy] != 7 &&
-						board[tox][toy] != 8 && board[tox][toy] != 9 && board[tox][toy] != 10 && board[tox][toy] != 11) {
+				if(Board.board[tox][toy] != 12 && Board.board[tox][toy] != 13 && Board.board[tox][toy] != 6 && Board.board[tox][toy] != 7 &&
+						Board.board[tox][toy] != 8 && Board.board[tox][toy] != 9 && Board.board[tox][toy] != 10 && Board.board[tox][toy] != 11) {
 					System.out.println("Move not allowed");
 					continue;
 				}
 				
-				currPiece.currcode = board[fromx][fromy];
+				currPiece.currcode = Board.board[fromx][fromy];
 				
-				valid = valid(currPiece.valid(board[fromx][fromy], fromx, fromy, tox, toy,board));
+				valid = valid(currPiece.valid(Board.board[fromx][fromy], fromx, fromy, tox, toy));
 			}	
-			board[fromx][fromy] = last;
-			last = board[tox][toy];		
-			board[tox][toy]= currPiece.currcode;
+			Board.board[fromx][fromy] = last;
+			last = Board.board[tox][toy];		
+			Board.board[tox][toy]= currPiece.currcode;
 			
-			printBoard(board);
+			printBoard(Board.board);
 		
 		
 			valid = false;
@@ -281,14 +281,14 @@ public static void main(String[] args) {
 				fromy = numberToIndex(Character.getNumericValue(input.charAt(1))) ;
 				
 				
-				//last = board[fromx][fromy];
+				//last = Board.board[fromx][fromy];
 				last = 12;
 				if(fromy%2 == 0 && fromx %2 != 0) {
 					last = 13;
 				} else if(fromy%2 != 0 &&  fromx%2 == 0){
 					last = 13;
 				}
-				//last = board[fromx][fromy];
+				//last = Board.board[fromx][fromy];
 				
 				chr2 = input.charAt(3);
 				tox = letterToIndex(chr2);
@@ -299,29 +299,29 @@ public static void main(String[] args) {
 				
 				currPiece.posX = fromx;
 				currPiece.posY = fromy;
-				if(board[fromx][fromy] != 6 && board[fromx][fromy] != 7 && board[fromx][fromy] != 8 &&
-						board[fromx][fromy] != 9 && board[fromx][fromy] != 10 && board[fromx][fromy] != 11) {
-					System.out.println("Not a Black piece " + board[fromx][fromy]);
+				if(Board.board[fromx][fromy] != 6 && Board.board[fromx][fromy] != 7 && Board.board[fromx][fromy] != 8 &&
+						Board.board[fromx][fromy] != 9 && Board.board[fromx][fromy] != 10 && Board.board[fromx][fromy] != 11) {
+					System.out.println("Not a Black piece " + Board.board[fromx][fromy]);
 					continue;
 					
 				}
 				
-				if(board[tox][toy] != 12 && board[tox][toy] != 13 && board[tox][toy] != 0 && board[tox][toy] != 1 &&
-						board[tox][toy] != 2 && board[tox][toy] != 3 && board[tox][toy] != 4 && board[tox][toy] != 5) {
+				if(Board.board[tox][toy] != 12 && Board.board[tox][toy] != 13 && Board.board[tox][toy] != 0 && Board.board[tox][toy] != 1 &&
+						Board.board[tox][toy] != 2 && Board.board[tox][toy] != 3 && Board.board[tox][toy] != 4 && Board.board[tox][toy] != 5) {
 					System.out.println("Move not allowed");
 					continue;
 				}
 				
 				
 				//valid = valid(wQueen.validMovement(tox, toy));
-				currPiece.currcode = board[fromx][fromy];
-				valid = valid(currPiece.valid(board[fromx][fromy], fromx, fromy, tox, toy,board));
+				currPiece.currcode = Board.board[fromx][fromy];
+				valid = valid(currPiece.valid(Board.board[fromx][fromy], fromx, fromy, tox, toy));
 			}	
-			board[fromx][fromy] = last;
-			last = board[tox][toy];		
-			board[tox][toy]= currPiece.currcode;
+			Board.board[fromx][fromy] = last;
+			last = Board.board[tox][toy];		
+			Board.board[tox][toy]= currPiece.currcode;
 			
-			printBoard(board);
+			printBoard(Board.board);
 		
 		
 	}
@@ -333,14 +333,14 @@ public static void main(String[] args) {
 	
 	
 		
-		//initBoard();
+		//initBoard.board();
 		//printBoard(board);
 		
 	}
 
 
 	public static int getCode(int[][] board, int x, int y) {
-		return board[x][y];
+		return Board.board[x][y];
 		
 	}
 

@@ -53,7 +53,12 @@ public class Knight{
 		 * 	[b][2]
 		 * 	...
 		 * 	[h][8]
+		 * 
 		 */
+		
+		
+		
+		
 		int[][] validMovements =  new int[8][2];
 		
 		validMovements[0][0] = posX + 2;

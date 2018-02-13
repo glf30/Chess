@@ -10,7 +10,7 @@ public class Queen{
 	int posX = 0;
 	int posY = 0;
 	String str = "";
-	public Queen(char color,int board[][]) {
+	public Queen(char color) {
 		this.color = color;
 		
 		
@@ -51,7 +51,7 @@ public class Queen{
 	
 	
 	
-	public boolean validMovement(int fromX, int fromY, int toX, int toY, int board[][]){
+	public boolean validMovement(int fromX, int fromY, int toX, int toY){
 		//System.out.println("fromX: " + fromX + " toX: " + toX);
 		//System.out.println("fromY: " + fromY + " toY: " + toY);
 		
@@ -64,7 +64,7 @@ public class Queen{
 			while(fromY != toY) {
 			
 				if(dif > 0) {
-					if((board[fromX][fromY+1] == 12 || board[fromX][fromY+1]== 13) || fromY+1 == toY ) {
+					if((Board.board[fromX][fromY+1] == 12 || Board.board[fromX][fromY+1]== 13) || fromY+1 == toY ) {
 						fromY++;
 					} else {
 						System.out.println("Move not allowed");
@@ -74,7 +74,7 @@ public class Queen{
 					
 					
 				} else {
-					if((board[fromX][fromY-1] == 12 || board[fromX][fromY-1]== 13) || fromY-1 == toY ) {
+					if((Board.board[fromX][fromY-1] == 12 || Board.board[fromX][fromY-1]== 13) || fromY-1 == toY ) {
 						fromY--;
 					} else {
 						System.out.println("Move not allowed");
@@ -95,7 +95,7 @@ public class Queen{
 			while(fromX != toX) {
 				
 				if(dif > 0) {
-					if((board[fromX + 1][fromY] == 12 || board[fromX + 1][fromY]== 13) || fromX +1 == toX) {
+					if((Board.board[fromX + 1][fromY] == 12 || Board.board[fromX + 1][fromY]== 13) || fromX +1 == toX) {
 						fromX++;
 					} else {
 						System.out.println("Move not allowed");
@@ -105,7 +105,7 @@ public class Queen{
 					
 					
 				} else {
-					if((board[fromX - 1][fromY] == 12 || board[fromX- 1][fromY]== 13) || fromX -1 == toX) {
+					if((Board.board[fromX - 1][fromY] == 12 || Board.board[fromX- 1][fromY]== 13) || fromX -1 == toX) {
 						fromX--;
 					} else {
 						System.out.println("Move not allowed");
@@ -130,7 +130,7 @@ public class Queen{
 				
 					while(fromX != toX && fromY != toY){
 						
-						if((board[fromX + 1][fromY + 1] == 12 || board[fromX + 1][fromY + 1]== 13)
+						if((Board.board[fromX + 1][fromY + 1] == 12 || Board.board[fromX + 1][fromY + 1]== 13)
 								|| (fromX+1 == toX && fromY +1 == toY)) {
 						fromX++;
 						fromY++;
@@ -146,7 +146,7 @@ public class Queen{
 			} else if(difY < 0) { //+1 -1
 				while(fromX != toX && fromY != toY){
 						
-						if((board[fromX + 1][fromY -1] == 12 || board[fromX + 1][fromY - 1]== 13)
+						if((Board.board[fromX + 1][fromY -1] == 12 || Board.board[fromX + 1][fromY - 1]== 13)
 								|| (fromX+1 == toX && fromY -1 == toY)) {
 						fromX++;
 						fromY--;
@@ -167,7 +167,7 @@ public class Queen{
 			if(difY > 0) {
 				while(fromX != toX && fromY != toY){
 						
-						if(board[fromX - 1][fromY + 1] == 12 || board[fromX - 1][fromY + 1]== 13
+						if(Board.board[fromX - 1][fromY + 1] == 12 || Board.board[fromX - 1][fromY + 1]== 13
 								|| (fromX-1 == toX && fromY +1 == toY)) {
 						fromX--;
 						fromY++;
@@ -187,7 +187,7 @@ public class Queen{
 			} else if(difY<0) { //-1 -1
 				while(fromX != toX && fromY != toY){
 						
-						if(board[fromX - 1][fromY - 1] == 12 || board[fromX - 1][fromY - 1]== 13
+						if(Board.board[fromX - 1][fromY - 1] == 12 || Board.board[fromX - 1][fromY - 1]== 13
 								|| (fromX-1 == toX && fromY -1 == toY)) {
 						fromX--;
 						fromY--;

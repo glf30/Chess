@@ -10,7 +10,7 @@ public class Rook{
 	int posX = 0;
 	int posY = 0;
 	String str = "";
-	public Rook(char color, int x, int y, int[][] board) {
+	public Rook(char color, int x, int y) {
 		this.color = color;
 		
 		
@@ -51,7 +51,7 @@ public class Rook{
 	
 	
 	
-	public boolean validMovement(int fromX, int fromY, int toX, int toY, int board[][]){
+	public boolean validMovement(int fromX, int fromY, int toX, int toY){
 		System.out.println("fromX: " + fromX + " toX: " + toX);
 		System.out.println("fromY: " + fromY + " toY: " + toY);
 		
@@ -63,7 +63,7 @@ public class Rook{
 			while(fromY != toY) {
 			
 				if(dif > 0) {
-					if((board[fromX][fromY+1] == 12 || board[fromX][fromY+1]== 13) || fromY+1 == toY ) {
+					if((Board.board[fromX][fromY+1] == 12 || Board.board[fromX][fromY+1]== 13) || fromY+1 == toY ) {
 						fromY++;
 					} else {
 						System.out.println("Move not allowed");
@@ -73,7 +73,7 @@ public class Rook{
 					
 					
 				} else {
-					if((board[fromX][fromY-1] == 12 || board[fromX][fromY-1]== 13) || fromY-1 == toY ) {
+					if((Board.board[fromX][fromY-1] == 12 || Board.board[fromX][fromY-1]== 13) || fromY-1 == toY ) {
 						fromY--;
 					} else {
 						System.out.println("Move not allowed");
@@ -94,7 +94,7 @@ public class Rook{
 			while(fromX != toX) {
 				
 				if(dif > 0) {
-					if((board[fromX + 1][fromY] == 12 || board[fromX + 1][fromY]== 13) || fromX +1 == toX) {
+					if((Board.board[fromX + 1][fromY] == 12 || Board.board[fromX + 1][fromY]== 13) || fromX +1 == toX) {
 						fromX++;
 					} else {
 						System.out.println("Move not allowed");
@@ -104,7 +104,7 @@ public class Rook{
 					
 					
 				} else {
-					if((board[fromX - 1][fromY] == 12 || board[fromX- 1][fromY]== 13) || fromX -1 == toX) {
+					if((Board.board[fromX - 1][fromY] == 12 || Board.board[fromX- 1][fromY]== 13) || fromX -1 == toX) {
 						fromX--;
 					} else {
 						System.out.println("Move not allowed");

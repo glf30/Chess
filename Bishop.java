@@ -10,7 +10,7 @@ public class Bishop{
 	int posX = 0;
 	int posY = 0;
 	String str = "";
-	public Bishop(char color, int x, int y, int[][] board) {
+	public Bishop(char color, int x, int y) {
 		this.color = color;
 		
 		
@@ -51,7 +51,7 @@ public class Bishop{
 	
 	
 	
-	public boolean validMovement(int fromX, int fromY, int toX, int toY, int[][]board){
+	public boolean validMovement(int fromX, int fromY, int toX, int toY){
 		if(Math.abs(toX - fromX) == Math.abs(toY - fromY)) { 
 			int difX = toX - fromX;
 			int difY = toY - fromY;
@@ -61,7 +61,7 @@ public class Bishop{
 				
 					while(fromX != toX && fromY != toY){
 						
-						if((board[fromX + 1][fromY + 1] == 12 || board[fromX + 1][fromY + 1]== 13)
+						if((Board.board[fromX + 1][fromY + 1] == 12 || Board.board[fromX + 1][fromY + 1]== 13)
 								|| (fromX+1 == toX && fromY +1 == toY)) {
 						fromX++;
 						fromY++;
@@ -77,7 +77,7 @@ public class Bishop{
 			} else if(difY < 0) { //+1 -1
 				while(fromX != toX && fromY != toY){
 						
-						if((board[fromX + 1][fromY -1] == 12 || board[fromX + 1][fromY - 1]== 13)
+						if((Board.board[fromX + 1][fromY -1] == 12 || Board.board[fromX + 1][fromY - 1]== 13)
 								|| (fromX+1 == toX && fromY -1 == toY)) {
 						fromX++;
 						fromY--;
@@ -98,7 +98,7 @@ public class Bishop{
 			if(difY > 0) {
 				while(fromX != toX && fromY != toY){
 						
-						if(board[fromX - 1][fromY + 1] == 12 || board[fromX - 1][fromY + 1]== 13
+						if(Board.board[fromX - 1][fromY + 1] == 12 || Board.board[fromX - 1][fromY + 1]== 13
 								|| (fromX-1 == toX && fromY +1 == toY)) {
 						fromX--;
 						fromY++;
@@ -118,7 +118,7 @@ public class Bishop{
 			} else if(difY<0) { //-1 -1
 				while(fromX != toX && fromY != toY){
 						
-						if(board[fromX - 1][fromY - 1] == 12 || board[fromX - 1][fromY - 1]== 13
+						if(Board.board[fromX - 1][fromY - 1] == 12 || Board.board[fromX - 1][fromY - 1]== 13
 								|| (fromX-1 == toX && fromY -1 == toY)) {
 						fromX--;
 						fromY--;
