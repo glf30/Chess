@@ -66,6 +66,12 @@ public class Pawn{
 				
 				return true;
 			}
+			else if(distY == -1 && distX == 1 && /*IS THERE A PIECE THERE??!?!?!?!?!?!?!? IDK THAT"S UP TO YOU BRO*/)
+			{
+				//this.posY = y;
+			
+				return true;
+			}
 			else if(distY == -1)
 			{
 				//this.posY = y;
@@ -79,6 +85,12 @@ public class Pawn{
 			{
 				//this.posY = y;
 				
+				return true;
+			}
+			else if(distY == 1 && distX == 1 && /*IS THERE A PIECE THERE??!?!?!?!?!?!?!? IDK THAT"S UP TO YOU BRO*/)
+			{
+				//this.posY = y;
+			
 				return true;
 			}
 			else if(distY == 1)
