@@ -9,6 +9,7 @@ public class Board {
 	
 	public static int board[][] = new int[8][8];
 	
+	 
 	
 	
 	

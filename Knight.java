@@ -98,7 +98,7 @@ public class Knight{
 		
 		//Else
 		
-		System.out.println("Move not allowed");
+		//System.out.println("Move not allowed");
 		return valid;
 	}
 

@@ -3,7 +3,7 @@ package chess.app;
 
 
 
-public class Rook{
+public class Rook implements PieceInterface{
 	
 	char color;
 	int code;
@@ -52,8 +52,8 @@ public class Rook{
 	
 	
 	public boolean validMovement(int fromX, int fromY, int toX, int toY){
-		System.out.println("fromX: " + fromX + " toX: " + toX);
-		System.out.println("fromY: " + fromY + " toY: " + toY);
+		//System.out.println("fromX: " + fromX + " toX: " + toX);
+		//System.out.println("fromY: " + fromY + " toY: " + toY);
 		
 		int dif = 0;
 		
@@ -66,7 +66,7 @@ public class Rook{
 					if((Board.board[fromX][fromY+1] == 12 || Board.board[fromX][fromY+1]== 13) || fromY+1 == toY ) {
 						fromY++;
 					} else {
-						System.out.println("Move not allowed");
+						//System.out.println("Move not allowed");
 						return false;
 					}
 					
@@ -76,7 +76,7 @@ public class Rook{
 					if((Board.board[fromX][fromY-1] == 12 || Board.board[fromX][fromY-1]== 13) || fromY-1 == toY ) {
 						fromY--;
 					} else {
-						System.out.println("Move not allowed");
+						//System.out.println("Move not allowed");
 						return false;
 					}
 					
@@ -97,7 +97,7 @@ public class Rook{
 					if((Board.board[fromX + 1][fromY] == 12 || Board.board[fromX + 1][fromY]== 13) || fromX +1 == toX) {
 						fromX++;
 					} else {
-						System.out.println("Move not allowed");
+						//System.out.println("Move not allowed");
 						return false;
 					}
 					
@@ -107,7 +107,7 @@ public class Rook{
 					if((Board.board[fromX - 1][fromY] == 12 || Board.board[fromX- 1][fromY]== 13) || fromX -1 == toX) {
 						fromX--;
 					} else {
-						System.out.println("Move not allowed");
+						//System.out.println("Move not allowed");
 						return false;
 					}
 					
@@ -122,7 +122,7 @@ public class Rook{
 			return true;
 		}
 		
-		System.out.println("Move not allowed");
+		//System.out.println("Move not allowed");
 		return false;
 	}
 	

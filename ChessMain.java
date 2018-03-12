@@ -57,7 +57,7 @@ public static void main(String[] args) {
 		while(x<8) {
 			if(rank == 1) {
 				/*bPawn = new Pawn('b', x, 1);
-				board[x][rank] = bPawn.code;
+				Board.board[x][rank] = bPawn.code;
 				x++; 
 				continue; */
 				//	board[x][rank] = "bp";
@@ -65,7 +65,7 @@ public static void main(String[] args) {
 			
 			if(rank == 6) {
 				/* wPawn = new Pawn('w', x, 6);
-				board[x][rank] = wPawn.code;
+				Board.board[x][rank] = wPawn.code;
 				x++;
 				continue; */
 				//board[x][rank] = "wp";
@@ -203,7 +203,8 @@ public static void main(String[] args) {
 	int tox = 0;
 	int toy = 0;
 	int last = 0;
-	
+	char isPromo = ' ';
+	boolean victory = false;
 	while(!(input.equals("resign"))) {
 		
 		
@@ -211,7 +212,7 @@ public static void main(String[] args) {
 			
 			while(valid == false) {
 				System.out.println();
-				System.out.print("White Move: ");
+				System.out.print("White's Move: ");
 				sr = new Scanner(System.in);
 				//exp string: "e5 e6"
 				input = sr.nextLine();
@@ -236,6 +237,9 @@ public static void main(String[] args) {
 				tox = letterToIndex(chr2);
 				toy = numberToIndex(Character.getNumericValue(input.charAt(4)));
 				
+				if(input.length() == 7) {
+					isPromo = input.charAt(6);
+				}
 				//getcurrent piece
 				//valid = valid(wQueen.validMovement(tox, toy));
 				
@@ -243,33 +247,73 @@ public static void main(String[] args) {
 				currPiece.posY = fromy;
 				if(Board.board[fromx][fromy] != 0 && Board.board[fromx][fromy] != 1 && Board.board[fromx][fromy] != 2 &&
 						Board.board[fromx][fromy] != 3 && Board.board[fromx][fromy] != 4 && Board.board[fromx][fromy] != 5) {
-					System.out.println("Not a White piece " + Board.board[fromx][fromy]);
+					System.out.println("Illegal move, try again");
 					continue;
 					
 				}
 				//valid = valid(wQueen.validMovement(tox, toy));
 				if(Board.board[tox][toy] != 12 && Board.board[tox][toy] != 13 && Board.board[tox][toy] != 6 && Board.board[tox][toy] != 7 &&
 						Board.board[tox][toy] != 8 && Board.board[tox][toy] != 9 && Board.board[tox][toy] != 10 && Board.board[tox][toy] != 11) {
-					System.out.println("Move not allowed");
+					System.out.println("Illegal move, try again");
 					continue;
 				}
 				
 				currPiece.currcode = Board.board[fromx][fromy];
 				
 				valid = valid(currPiece.valid(Board.board[fromx][fromy], fromx, fromy, tox, toy));
-			}	
+				if(valid == false) {
+					System.out.println("Illegal move, try again");
+				}
+				
+			}
+			if(Board.board[fromx][fromy] == 5) {
+				//is White Pawn advancing to end of board
+				
+				if(toy == 0) { //black 7
+					currPiece.currcode = 0;	
+					if(isPromo != ' ') {
+						if(isPromo == 'R') {
+							currPiece.currcode = 2;
+						} else if(isPromo == 'B') {
+							currPiece.currcode = 3;
+						} else if(isPromo == 'N') {
+							currPiece.currcode = 4;
+						}
+					}
+				}
+				
+				
+				
+				
+			}
+			
+			isPromo = ' ';
+			
+			if(Board.board[tox][toy] == 7) {
+				System.out.println("White wins");
+				System.exit(0);
+			}
+			
+			
 			Board.board[fromx][fromy] = last;
 			last = Board.board[tox][toy];		
 			Board.board[tox][toy]= currPiece.currcode;
 			
+			
+			
+			
+			
 			printBoard(Board.board);
+			if(Check('w',Board.board)) {
+				System.out.println("Check");
+			}
 		
 		
 			valid = false;
 			
 			while(valid == false) {
 				System.out.println();
-				System.out.print("Black Move: ");
+				System.out.print("Black's Move: ");
 				sr = new Scanner(System.in);
 				//exp string: "e5 e6"
 				input = sr.nextLine();
@@ -301,14 +345,14 @@ public static void main(String[] args) {
 				currPiece.posY = fromy;
 				if(Board.board[fromx][fromy] != 6 && Board.board[fromx][fromy] != 7 && Board.board[fromx][fromy] != 8 &&
 						Board.board[fromx][fromy] != 9 && Board.board[fromx][fromy] != 10 && Board.board[fromx][fromy] != 11) {
-					System.out.println("Not a Black piece " + Board.board[fromx][fromy]);
+					System.out.println("Illegal move, try again");
 					continue;
 					
 				}
 				
 				if(Board.board[tox][toy] != 12 && Board.board[tox][toy] != 13 && Board.board[tox][toy] != 0 && Board.board[tox][toy] != 1 &&
 						Board.board[tox][toy] != 2 && Board.board[tox][toy] != 3 && Board.board[tox][toy] != 4 && Board.board[tox][toy] != 5) {
-					System.out.println("Move not allowed");
+					System.out.println("Illegal move, try again");
 					continue;
 				}
 				
@@ -316,25 +360,54 @@ public static void main(String[] args) {
 				//valid = valid(wQueen.validMovement(tox, toy));
 				currPiece.currcode = Board.board[fromx][fromy];
 				valid = valid(currPiece.valid(Board.board[fromx][fromy], fromx, fromy, tox, toy));
+				
+				if(valid == false) {
+					System.out.println("Illegal move, try again");
+				}
+				
 			}	
+			if(Board.board[fromx][fromy] == 11) {
+				//is Black Pawn advancing to end of board
+				
+				if(toy == 7) {
+					currPiece.currcode = 6;	
+					if(isPromo != ' ') {
+						if(isPromo == 'R') {
+							currPiece.currcode = 8;
+						} else if(isPromo == 'B') {
+							currPiece.currcode = 9;
+						} else if(isPromo == 'N') {
+							currPiece.currcode = 10;
+						}
+					}
+				}
+				
+				
+				
+				
+			}
+			
+			isPromo = ' ';
+			
+			if(Board.board[tox][toy] == 7) {
+				System.out.println("Black wins");
+				System.exit(0);
+			}
+			
+			
+			
 			Board.board[fromx][fromy] = last;
 			last = Board.board[tox][toy];		
 			Board.board[tox][toy]= currPiece.currcode;
 			
 			printBoard(Board.board);
-		
+			if(Check('b',Board.board)) {
+				System.out.println("Check");
+			}
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-		
-		//initBoard.board();
-		//printBoard(board);
+
 		
 	}
 
@@ -481,6 +554,101 @@ public static void main(String[] args) {
 		
 		
 	}
+	
+	
+	public static boolean Check(char color, int board[][]) {
+		int toX = 0;
+		int toY = 0;
+		
+		Piece tempPiece = new Piece();
+		//go through board and find king
+		//go through board and test valid movement for each piece to king
+		if(color == 'w') {
+			
+			int r = 8;
+			for(int y = 0; y<8; y++) {
+				for(int x = 0; x<8; x++) {
+					if(board[x][y] == 7) {
+						toX = x;
+						toY = y;
+					}
+					
+					
+				}
+
+				r--;
+
+			}
+			
+			r = 8;
+			for(int y = 0; y<8; y++) {
+				for(int x = 0; x<8; x++) {
+					if(board[x][y] < 6) {
+						if(tempPiece.valid(board[x][y], x, y, toX, toY)) {
+							return true;
+						}
+						
+					}
+					
+					
+				}
+
+				r--;
+
+			}
+			
+			
+			
+			
+		} else if(color == 'b') {
+			int r = 8;
+			for(int y = 0; y<8; y++) {
+				for(int x = 0; x<8; x++) {
+					if(board[x][y] == 1) {
+						toX = x;
+						toY = y;
+					}
+					
+					
+				}
+
+				r--;
+
+			}
+			
+			r = 8;
+			for(int y = 0; y<8; y++) {
+				for(int x = 0; x<8; x++) {
+					if(board[x][y] > 5 && board[x][y] < 12) {
+						if(tempPiece.valid(board[x][y], x, y, toX, toY)) {
+							return true;
+						}
+						
+					}
+					
+					
+				}
+
+				r--;
+
+			}
+			
+			
+			
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		return false;
+	}
+	
 	
 	
 	

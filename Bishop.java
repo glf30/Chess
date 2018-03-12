@@ -3,7 +3,7 @@ package chess.app;
 
 
 
-public class Bishop{
+public class Bishop implements PieceInterface{
 	
 	char color;
 	int code;
@@ -66,7 +66,7 @@ public class Bishop{
 						fromX++;
 						fromY++;
 					} else {
-						System.out.println("Move not allowed");
+						//System.out.println("Move not allowed");
 						return false;
 					}
 						
@@ -82,7 +82,7 @@ public class Bishop{
 						fromX++;
 						fromY--;
 					} else {
-						System.out.println("Move not allowed");
+						//System.out.println("Move not allowed");
 						return false;
 					}
 						
@@ -103,7 +103,7 @@ public class Bishop{
 						fromX--;
 						fromY++;
 					} else {
-						System.out.println("Move not allowed");
+						//System.out.println("Move not allowed");
 						return false;
 					}
 						
@@ -123,7 +123,7 @@ public class Bishop{
 						fromX--;
 						fromY--;
 					} else {
-						System.out.println("Move not allowed");
+						//System.out.println("Move not allowed");
 						return false;
 					}
 						
@@ -141,7 +141,7 @@ public class Bishop{
 			return true;
 		}
 		
-		System.out.println("Move not allowed");
+		//System.out.println("Move not allowed");
 		return false;
 	}
 	

@@ -3,7 +3,7 @@ package chess.app;
 
 
 
-public class Queen{
+public class Queen implements PieceInterface{
 	
 	char color;
 	int code;
@@ -67,7 +67,7 @@ public class Queen{
 					if((Board.board[fromX][fromY+1] == 12 || Board.board[fromX][fromY+1]== 13) || fromY+1 == toY ) {
 						fromY++;
 					} else {
-						System.out.println("Move not allowed");
+						//System.out.println("Move not allowed");
 						return false;
 					}
 					
@@ -77,7 +77,7 @@ public class Queen{
 					if((Board.board[fromX][fromY-1] == 12 || Board.board[fromX][fromY-1]== 13) || fromY-1 == toY ) {
 						fromY--;
 					} else {
-						System.out.println("Move not allowed");
+						//System.out.println("Move not allowed");
 						return false;
 					}
 					
@@ -98,7 +98,7 @@ public class Queen{
 					if((Board.board[fromX + 1][fromY] == 12 || Board.board[fromX + 1][fromY]== 13) || fromX +1 == toX) {
 						fromX++;
 					} else {
-						System.out.println("Move not allowed");
+						//System.out.println("Move not allowed");
 						return false;
 					}
 					
@@ -108,7 +108,7 @@ public class Queen{
 					if((Board.board[fromX - 1][fromY] == 12 || Board.board[fromX- 1][fromY]== 13) || fromX -1 == toX) {
 						fromX--;
 					} else {
-						System.out.println("Move not allowed");
+						//System.out.println("Move not allowed");
 						return false;
 					}
 					
@@ -135,7 +135,7 @@ public class Queen{
 						fromX++;
 						fromY++;
 					} else {
-						System.out.println("Move not allowed");
+						//System.out.println("Move not allowed");
 						return false;
 					}
 						
@@ -151,7 +151,7 @@ public class Queen{
 						fromX++;
 						fromY--;
 					} else {
-						System.out.println("Move not allowed");
+						//System.out.println("Move not allowed");
 						return false;
 					}
 						
@@ -172,7 +172,7 @@ public class Queen{
 						fromX--;
 						fromY++;
 					} else {
-						System.out.println("Move not allowed");
+						//System.out.println("Move not allowed");
 						return false;
 					}
 						
@@ -192,7 +192,7 @@ public class Queen{
 						fromX--;
 						fromY--;
 					} else {
-						System.out.println("Move not allowed");
+						//System.out.println("Move not allowed");
 						return false;
 					}
 						
@@ -210,7 +210,7 @@ public class Queen{
 			return true;
 		}
 		
-		System.out.println("Move not allowed");
+		//System.out.println("Move not allowed");
 		return false;
 	}
 	

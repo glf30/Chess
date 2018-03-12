@@ -54,8 +54,9 @@ public class Pawn{
 		//boolean valid = false;
 	
 		//Check if position is at the start, then movement is allowed by two units
-		System.out.println("FROM " + fromY);
-		System.out.println("DIST " + distY);
+		
+		//System.out.println("FROM " + fromY);
+		//System.out.println("DIST " + distY);
 		//CHANGE FOR BLACK AND WHITE
 		if(code == 5) {
 		
@@ -64,12 +65,6 @@ public class Pawn{
 			{
 				//this.posY = y;
 				
-				return true;
-			}
-			else if(distY == -1 && distX == 1 && /*IS THERE A PIECE THERE??!?!?!?!?!?!?!? IDK THAT"S UP TO YOU BRO*/)
-			{
-				//this.posY = y;
-			
 				return true;
 			}
 			else if(distY == -1)
@@ -85,12 +80,6 @@ public class Pawn{
 			{
 				//this.posY = y;
 				
-				return true;
-			}
-			else if(distY == 1 && distX == 1 && /*IS THERE A PIECE THERE??!?!?!?!?!?!?!? IDK THAT"S UP TO YOU BRO*/)
-			{
-				//this.posY = y;
-			
 				return true;
 			}
 			else if(distY == 1)
@@ -109,7 +98,7 @@ public class Pawn{
 		
 		//Else
 		
-		System.out.println("Move NOT allowed");
+		//System.out.println("Illegal Move, Try Again");
 		return false;
 	}
 

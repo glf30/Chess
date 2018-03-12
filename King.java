@@ -3,7 +3,7 @@ package chess.app;
 
 
 
-public class King{
+public class King implements PieceInterface{
 	
 	char color;
 	int code = -1;
@@ -166,7 +166,7 @@ public class King{
 		
 		//Else
 		
-		System.out.println("Illegal move, try again");
+		
 		return valid;
 	}
 
