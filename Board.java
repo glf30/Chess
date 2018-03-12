@@ -10,7 +10,12 @@ public class Board {
 	public static int board[][] = new int[8][8];
 	
 	 
-	
+    static int piece;
+    static int lastX;
+    static int lastY;
+    static int lastDistX;
+    static int lastDistY;
+    
 	
 	
 	

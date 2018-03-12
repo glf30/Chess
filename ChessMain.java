@@ -300,8 +300,12 @@ public static void main(String[] args) {
 			Board.board[tox][toy]= currPiece.currcode;
 			
 			
-			
-			
+			Board.lastX = tox;
+			Board.lastY = toy;
+			Board.piece = currPiece.currcode;
+			Board.lastDistY = toy - fromy;
+			Board.lastX = tox - fromx;
+
 			
 			printBoard(Board.board);
 			if(Check('w',Board.board)) {
@@ -399,6 +403,12 @@ public static void main(String[] args) {
 			Board.board[fromx][fromy] = last;
 			last = Board.board[tox][toy];		
 			Board.board[tox][toy]= currPiece.currcode;
+			
+			Board.lastX = tox;
+			Board.lastY = toy;
+			Board.piece = currPiece.currcode;
+			Board.lastDistY = toy - fromy;
+			Board.lastX = tox - fromx;
 			
 			printBoard(Board.board);
 			if(Check('b',Board.board)) {
@@ -554,6 +564,10 @@ public static void main(String[] args) {
 		
 		
 	}
+	
+	
+	
+	
 	
 	
 	public static boolean Check(char color, int board[][]) {
