@@ -56,18 +56,26 @@ public class Pawn{
 		//Check if position is at the start, then movement is allowed by two units
 		
 		//System.out.println("FROM " + fromY);
-		//System.out.println("DIST " + distY);
+		//System.out.println("To X " + toX);
+		//System.out.println("To Y " + toY);
+		//System.out.println("Occupancy Code is " + Board.board[toX][toY]);
 		//CHANGE FOR BLACK AND WHITE
 		if(code == 5) {
 		
 		
-			if(distY == -2 && fromY == 6)
+			if(distY == -2 && fromY == 6 && distX == 0)
 			{
 				//this.posY = y;
 				
 				return true;
 			}
-			else if(distY == -1)
+			else if(distY == -1 && distX == 1 && (Board.board[toX][toY] != 12 && Board.board[toX][toY] !=13))
+			{
+				//this.posY = y;
+				//System.out.println("I moved diagonal");
+				return true;
+			}
+			else if(distY == -1 && distX == 0)
 			{
 				//this.posY = y;
 			
@@ -76,13 +84,19 @@ public class Pawn{
 		
 		} else if(code == 11) {
 			
-			if(distY == 2 && fromY == 1)
+			if(distY == 2 && fromY == 1 && distX == 0)
 			{
 				//this.posY = y;
 				
 				return true;
 			}
-			else if(distY == 1)
+			else if(distY == 1 && distX == 1 && (Board.board[toX][toY] != 12 && Board.board[toX][toY] != 13))
+			{
+				//this.posY = y;
+				//System.out.println("I moved diagonal");
+				return true;
+			}
+			else if(distY == 1 && distX == 0)
 			{
 				//this.posY = y;
 			
