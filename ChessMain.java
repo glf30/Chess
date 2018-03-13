@@ -57,18 +57,18 @@ public static void main(String[] args) {
 		x = 0;
 		while(x<8) {
 			if(rank == 1) {
-				bPawn = new Pawn('b', x, 1);
+				/*bPawn = new Pawn('b', x, 1);
 				Board.board[x][rank] = bPawn.code;
 				x++; 
-				continue; 
+				continue;*/
 				//	board[x][rank] = "bp";
 			}
 			
 			if(rank == 6) {
-				 wPawn = new Pawn('w', x, 6);
+				/* wPawn = new Pawn('w', x, 6);
 				Board.board[x][rank] = wPawn.code;
 				x++;
-				continue;
+				continue; */
 				//board[x][rank] = "wp";
 			}
 		
@@ -190,7 +190,6 @@ public static void main(String[] args) {
 	
 	
 	printBoard(Board.board);	
-	//getAllWhitePieces();
 	
 	boolean valid = false;
 	Scanner sr;
@@ -206,6 +205,8 @@ public static void main(String[] args) {
 	int toy = 0;
 	int last = 0;
 	char isPromo = ' ';
+	
+	boolean isDraw = false;
 	boolean victory = false;
 	while(!(input.equals("resign"))) {
 		
@@ -220,7 +221,23 @@ public static void main(String[] args) {
 				input = sr.nextLine();
 				System.out.println(input);
 				
+				if(isDraw) {
+					if(input.equals("draw")) {
+						System.exit(0);
+					} else {
+						isDraw = false;
+					}
+				} 
+				
+				if(input.toLowerCase().equals("resign")) {
+					System.out.println("Black wins");
+					System.exit(0);
+				}
 				chr = input.charAt(0);
+				
+				if(input.length() >= 7 && input.substring(6).equals("draw?")) {
+					isDraw = true; 
+				}
 				
 				fromx = letterToIndex(chr);
 				fromy = numberToIndex(Character.getNumericValue(input.charAt(1))) ;
@@ -306,27 +323,48 @@ public static void main(String[] args) {
 			Board.lastY = toy;
 			Board.piece = currPiece.currcode;
 			Board.lastDistY = toy - fromy;
-			Board.lastX = tox - fromx;
+			Board.lastDistX = tox - fromx;
 
 			
 			printBoard(Board.board);
 			if(Check('w',Board.board)) {
 				System.out.println("Check");
+				if(isCheckmate('b')) {
+					System.out.println("Checkmate");
+					System.out.println("White wins");
+					System.exit(0);
+				}
 			}
 		
 		
 			valid = false;
-			
+			/*
 			while(valid == false) {
 				System.out.println();
 				System.out.print("Black's Move: ");
 				sr = new Scanner(System.in);
+				
 				//exp string: "e5 e6"
 				input = sr.nextLine();
+				
+				if(isDraw) {
+					if(input.equals("draw")) {
+						System.exit(0);
+					} else {
+						isDraw = false;
+					}
+				} 
+				
 				System.out.println(input);
+				if(input.toLowerCase().equals("resign")) {
+					System.out.println("White wins");
+					System.exit(0);
+				}
 				
 				chr = input.charAt(0);
-				
+				if(input.length() >= 7 && input.substring(6).equals("draw?")) {
+					isDraw = true;
+				}
 				fromx = letterToIndex(chr);
 				fromy = numberToIndex(Character.getNumericValue(input.charAt(1))) ;
 				
@@ -410,13 +448,21 @@ public static void main(String[] args) {
 			Board.lastY = toy;
 			Board.piece = currPiece.currcode;
 			Board.lastDistY = toy - fromy;
-			Board.lastX = tox - fromx;
+			Board.lastDistX = tox - fromx;
 			
 			printBoard(Board.board);
 			if(Check('b',Board.board)) {
 				System.out.println("Check");
+				if(isCheckmate('w')) {
+					System.out.println("Checkmate");
+					System.out.println("Black wins");
+					System.exit(0);
+				}
 			}
 		
+			
+			
+			*/
 	}
 	
 
@@ -569,6 +615,140 @@ public static void main(String[] args) {
 	
 	
 	
+	public static boolean isCheckmate(char color) {
+		ArrayList<int[]> whitePieceList = getAllWhitePieces();
+		ArrayList<int[]> blackPieceList = getAllBlackPieces();
+		Board.boardT = Board.board;
+		int w = 0;
+		int b = 0;
+		int fromX = 0;
+		int fromY = 0;
+		int toX = 0;
+		int toY = 0;
+		int currPiece = 0;
+		int last = 0;
+		int x = 0;
+		int y = 0;
+		Piece tempPiece = new Piece();
+		if(color == 'b') {
+			
+		while(b < blackPieceList.size()) {	
+			while(y < 8) {
+				while(x < 8) {
+					
+					
+					fromX =blackPieceList.get(b)[1];
+					fromY = blackPieceList.get(b)[2];
+					
+					toX = x;
+					toY = y;
+					
+					currPiece = blackPieceList.get(b)[0];
+					
+					
+					
+					if(tempPiece.valid(Board.board[fromX][fromY], fromX, fromY, toX, toY)) {
+						last = 12;
+						if(fromY%2 == 0 && fromX %2 != 0) {
+							last = 13;
+						} else if(fromY%2 != 0 &&  fromX%2 == 0){
+							last = 13;
+						}
+						Board.board[fromX][fromY] = last;
+						last = Board.board[toX][toY];		
+						Board.board[toX][toY]= currPiece;
+						
+					}
+				
+					if(!Check('w',Board.board)) {
+						System.out.println("NOT CHECKMATE");
+						Board.board = Board.boardT;
+						return false;
+					}
+					
+					Board.board = Board.boardT;
+					
+					
+					
+					x++;
+					
+					
+				
+				}
+				x = 0;
+				y++;
+				
+			}
+			y = 0;
+			b++;
+			
+		}
+			
+		    return true;
+		}
+		w = 0;
+		b = 0;
+		fromX = 0;
+		fromY = 0;
+		toX = 0;
+		toY = 0;
+		currPiece = 0;
+		last = 0;
+		x = 0;
+		y = 0;
+		
+		if(color == 'w') {
+		while(w < whitePieceList.size())	{
+			while(y < 8) {
+				while(x < 8) {
+					
+					
+					fromX = whitePieceList.get(w)[1];
+					fromY = whitePieceList.get(w)[2];
+					toX = x;
+					toY = y;
+					currPiece = whitePieceList.get(w)[0];
+					
+					
+					
+					if(tempPiece.valid(Board.board[fromX][fromY], fromX, fromY, toX, toY)) {
+						last = 12;
+						if(fromY%2 == 0 && fromX %2 != 0) {
+							last = 13;
+						} else if(fromY%2 != 0 &&  fromX%2 == 0){
+							last = 13;
+						}
+						Board.board[fromX][fromY] = last;
+						last = Board.board[toX][toY];		
+						Board.board[toX][toY]= currPiece;
+						//printBoard(Board.board);
+						
+						
+					}
+					if(!Check('b',Board.board)) {
+						System.out.println("NOT CHECKMATE");
+						Board.board = Board.boardT;
+						return false;
+					}
+					Board.board = Board.boardT;
+					
+					
+					x++;
+					
+				}
+				x = 0;
+				y++;
+			}
+			y = 0;
+			w++;
+		}
+			return true;
+		}
+		
+		
+		return false;
+	}
+	
 	public static ArrayList<int[]> getAllWhitePieces()
 	{
 		ArrayList<int[]> list = new ArrayList<int[]>();
@@ -576,7 +756,7 @@ public static void main(String[] args) {
 		{
 			for(int y = 0; y < 8; y++)
 			{
-				if(Board.board[x][y]>=0 && Board.board[x][y] <= 6)
+				if(Board.board[x][y]>=0 && Board.board[x][y] <= 5)
 				{
 					int[] toAdd = new int[]{Board.board[x][y],x,y};	
 					//System.out.println("Added "+Board.board[x][y]+" "+x+" "+y);
