@@ -81,6 +81,12 @@ public class Pawn{
 			
 				return true;
 			}
+			else if(Board.piece == 11 && Board.lastDistX == 0 && Board.lastDistY == 2 && fromY == 3)
+			{
+				//ERASE PAWN CODE HERE
+				System.out.println("En Passant made here");
+				return true;
+			}
 		
 		} else if(code == 11) {
 			
@@ -102,7 +108,12 @@ public class Pawn{
 			
 				return true;
 			}
-			
+			else if(Board.piece == 5 && Board.lastDistX == 0 && Board.lastDistY == 2 && fromY == 4)
+			{
+				//ERASE PAWN CODE HERE
+				System.out.println("En Passant made here");
+				return true;
+			}
 			
 			
 			
