@@ -1,5 +1,6 @@
 package chess.app;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -56,18 +57,18 @@ public static void main(String[] args) {
 		x = 0;
 		while(x<8) {
 			if(rank == 1) {
-				/*bPawn = new Pawn('b', x, 1);
+				bPawn = new Pawn('b', x, 1);
 				Board.board[x][rank] = bPawn.code;
 				x++; 
-				continue; */
+				continue; 
 				//	board[x][rank] = "bp";
 			}
 			
 			if(rank == 6) {
-				/* wPawn = new Pawn('w', x, 6);
+				 wPawn = new Pawn('w', x, 6);
 				Board.board[x][rank] = wPawn.code;
 				x++;
-				continue; */
+				continue;
 				//board[x][rank] = "wp";
 			}
 		
@@ -189,6 +190,7 @@ public static void main(String[] args) {
 	
 	
 	printBoard(Board.board);	
+	//getAllWhitePieces();
 	
 	boolean valid = false;
 	Scanner sr;
@@ -204,8 +206,6 @@ public static void main(String[] args) {
 	int toy = 0;
 	int last = 0;
 	char isPromo = ' ';
-	
-	boolean isDraw = false;
 	boolean victory = false;
 	while(!(input.equals("resign"))) {
 		
@@ -220,23 +220,7 @@ public static void main(String[] args) {
 				input = sr.nextLine();
 				System.out.println(input);
 				
-				if(isDraw) {
-					if(input.equals("draw")) {
-						System.exit(0);
-					} else {
-						isDraw = false;
-					}
-				} 
-				
-				if(input.toLowerCase().equals("resign")) {
-					System.out.println("Black wins");
-					System.exit(0);
-				}
 				chr = input.charAt(0);
-				
-				if(input.length() >= 7 && input.substring(6).equals("draw?")) {
-					isDraw = true; 
-				}
 				
 				fromx = letterToIndex(chr);
 				fromy = numberToIndex(Character.getNumericValue(input.charAt(1))) ;
@@ -337,28 +321,12 @@ public static void main(String[] args) {
 				System.out.println();
 				System.out.print("Black's Move: ");
 				sr = new Scanner(System.in);
-				
 				//exp string: "e5 e6"
 				input = sr.nextLine();
-				
-				if(isDraw) {
-					if(input.equals("draw")) {
-						System.exit(0);
-					} else {
-						isDraw = false;
-					}
-				} 
-				
 				System.out.println(input);
-				if(input.toLowerCase().equals("resign")) {
-					System.out.println("White wins");
-					System.exit(0);
-				}
 				
 				chr = input.charAt(0);
-				if(input.length() >= 7 && input.substring(6).equals("draw?")) {
-					isDraw = true;
-				}
+				
 				fromx = letterToIndex(chr);
 				fromy = numberToIndex(Character.getNumericValue(input.charAt(1))) ;
 				
@@ -601,8 +569,40 @@ public static void main(String[] args) {
 	
 	
 	
+	public static ArrayList<int[]> getAllWhitePieces()
+	{
+		ArrayList<int[]> list = new ArrayList<int[]>();
+		for(int x = 0; x < 8; x++)
+		{
+			for(int y = 0; y < 8; y++)
+			{
+				if(Board.board[x][y]>=0 && Board.board[x][y] <= 6)
+				{
+					int[] toAdd = new int[]{Board.board[x][y],x,y};	
+					//System.out.println("Added "+Board.board[x][y]+" "+x+" "+y);
+					list.add(toAdd);
+				}
+			}
+		}
+			return list;
+	}
 	
-	
+	public static ArrayList<int[]> getAllBlackPieces()
+	{
+		ArrayList<int[]> list = new ArrayList<int[]>();
+		for(int x = 0; x < 8; x++)
+		{
+			for(int y = 0; y < 8; y++)
+			{
+				if(Board.board[x][y]>=6 && Board.board[x][y] <= 11)
+				{
+					int[] toAdd = new int[]{Board.board[x][y],x,y};	
+					list.add(toAdd);
+				}
+			}
+		}
+			return list;
+	}
 	
 	public static boolean Check(char color, int board[][]) {
 		int toX = 0;
