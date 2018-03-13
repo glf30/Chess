@@ -204,6 +204,8 @@ public static void main(String[] args) {
 	int toy = 0;
 	int last = 0;
 	char isPromo = ' ';
+	
+	boolean isDraw = false;
 	boolean victory = false;
 	while(!(input.equals("resign"))) {
 		
@@ -218,7 +220,23 @@ public static void main(String[] args) {
 				input = sr.nextLine();
 				System.out.println(input);
 				
+				if(isDraw) {
+					if(input.equals("draw")) {
+						System.exit(0);
+					} else {
+						isDraw = false;
+					}
+				} 
+				
+				if(input.toLowerCase().equals("resign")) {
+					System.out.println("Black wins");
+					System.exit(0);
+				}
 				chr = input.charAt(0);
+				
+				if(input.length() >= 7 && input.substring(6).equals("draw?")) {
+					isDraw = true; 
+				}
 				
 				fromx = letterToIndex(chr);
 				fromy = numberToIndex(Character.getNumericValue(input.charAt(1))) ;
@@ -319,12 +337,28 @@ public static void main(String[] args) {
 				System.out.println();
 				System.out.print("Black's Move: ");
 				sr = new Scanner(System.in);
+				
 				//exp string: "e5 e6"
 				input = sr.nextLine();
+				
+				if(isDraw) {
+					if(input.equals("draw")) {
+						System.exit(0);
+					} else {
+						isDraw = false;
+					}
+				} 
+				
 				System.out.println(input);
+				if(input.toLowerCase().equals("resign")) {
+					System.out.println("White wins");
+					System.exit(0);
+				}
 				
 				chr = input.charAt(0);
-				
+				if(input.length() >= 7 && input.substring(6).equals("draw?")) {
+					isDraw = true;
+				}
 				fromx = letterToIndex(chr);
 				fromy = numberToIndex(Character.getNumericValue(input.charAt(1))) ;
 				
