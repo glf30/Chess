@@ -8,7 +8,7 @@ public class Board {
 	
 	
 	public static int board[][] = new int[8][8];
-	
+	public static int boardT[][] = new int[8][8];
 	 
     static int piece;
     static int lastX;
