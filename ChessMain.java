@@ -57,18 +57,18 @@ public static void main(String[] args) {
 		x = 0;
 		while(x<8) {
 			if(rank == 1) {
-				/*bPawn = new Pawn('b', x, 1);
+				bPawn = new Pawn('b', x, 1);
 				Board.board[x][rank] = bPawn.code;
 				x++; 
-				continue;*/
+				continue;
 				//	board[x][rank] = "bp";
 			}
 			
 			if(rank == 6) {
-				/* wPawn = new Pawn('w', x, 6);
+				 wPawn = new Pawn('w', x, 6);
 				Board.board[x][rank] = wPawn.code;
 				x++;
-				continue; */
+				continue; 
 				//board[x][rank] = "wp";
 			}
 		
@@ -327,6 +327,7 @@ public static void main(String[] args) {
 
 			
 			printBoard(Board.board);
+		
 			if(Check('w',Board.board)) {
 				System.out.println("Check");
 				if(isCheckmate('b')) {
@@ -335,10 +336,10 @@ public static void main(String[] args) {
 					System.exit(0);
 				}
 			}
-		
+			
 		
 			valid = false;
-			/*
+			
 			while(valid == false) {
 				System.out.println();
 				System.out.print("Black's Move: ");
@@ -462,7 +463,7 @@ public static void main(String[] args) {
 		
 			
 			
-			*/
+			
 	}
 	
 
@@ -618,7 +619,18 @@ public static void main(String[] args) {
 	public static boolean isCheckmate(char color) {
 		ArrayList<int[]> whitePieceList = getAllWhitePieces();
 		ArrayList<int[]> blackPieceList = getAllBlackPieces();
-		Board.boardT = Board.board;
+		int boardT[][] = new int[8][8];
+		int tx = 0;
+		int ty = 0;
+		while(ty < 8) {
+			while (tx < 8) {
+				boardT[tx][ty] = Board.board[tx][ty];
+				tx++;
+			}
+			tx = 0;
+			ty++;
+		}
+		
 		int w = 0;
 		int b = 0;
 		int fromX = 0;
@@ -647,7 +659,8 @@ public static void main(String[] args) {
 					
 					
 					
-					if(tempPiece.valid(Board.board[fromX][fromY], fromX, fromY, toX, toY)) {
+					if((Board.board[toX][toY] < 6 || Board.board[toX][toY] >= 12) &&
+							tempPiece.valid(Board.board[fromX][fromY], fromX, fromY, toX, toY)) {
 						last = 12;
 						if(fromY%2 == 0 && fromX %2 != 0) {
 							last = 13;
@@ -661,12 +674,32 @@ public static void main(String[] args) {
 					}
 				
 					if(!Check('w',Board.board)) {
-						System.out.println("NOT CHECKMATE");
-						Board.board = Board.boardT;
+						System.out.println("BLACK NOT IN CHECKMATE");
+						
+						tx = 0;
+						ty = 0;
+						while(ty < 8) {
+							while (tx < 8) {
+								Board.board[tx][ty] = boardT[tx][ty];
+								tx++;
+							}
+							tx = 0;
+							ty++;
+						}
+						
 						return false;
 					}
 					
-					Board.board = Board.boardT;
+					tx = 0;
+					ty = 0;
+					while(ty < 8) {
+						while (tx < 8) {
+							Board.board[tx][ty] = boardT[tx][ty];
+							tx++;
+						}
+						tx = 0;
+						ty++;
+					}
 					
 					
 					
@@ -711,7 +744,9 @@ public static void main(String[] args) {
 					
 					
 					
-					if(tempPiece.valid(Board.board[fromX][fromY], fromX, fromY, toX, toY)) {
+					
+					if(Board.board[toX][toY] >= 6 && 
+							tempPiece.valid(Board.board[fromX][fromY], fromX, fromY, toX, toY)) {
 						last = 12;
 						if(fromY%2 == 0 && fromX %2 != 0) {
 							last = 13;
@@ -726,11 +761,30 @@ public static void main(String[] args) {
 						
 					}
 					if(!Check('b',Board.board)) {
-						System.out.println("NOT CHECKMATE");
-						Board.board = Board.boardT;
+						System.out.println("WHITE NOT IN CHECKMATE");
+						//printBoard(Board.board);
+						tx = 0;
+						ty = 0;
+						while(ty < 8) {
+							while (tx < 8) {
+								Board.board[tx][ty] = boardT[tx][ty];
+								tx++;
+							}
+							tx = 0;
+							ty++;
+						}
 						return false;
 					}
-					Board.board = Board.boardT;
+					tx = 0;
+					ty = 0;
+					while(ty < 8) {
+						while (tx < 8) {
+							Board.board[tx][ty] = boardT[tx][ty];
+							tx++;
+						}
+						tx = 0;
+						ty++;
+					}
 					
 					
 					x++;
