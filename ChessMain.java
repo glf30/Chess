@@ -207,7 +207,10 @@ public static void main(String[] args) {
 	char isPromo = ' ';
 	
 	boolean isDraw = false;
-	boolean victory = false;
+	
+	boolean inCheckB = false;
+	boolean inCheckW = false;
+	
 	while(!(input.equals("resign"))) {
 		
 		
@@ -284,6 +287,11 @@ public static void main(String[] args) {
 					System.out.println("Illegal move, try again");
 				}
 				
+				if(Check('b',Board.board) && inCheckW == false) {
+					valid = false;
+					System.out.println("Illegal move, try again");
+				}
+				
 			}
 			if(Board.board[fromx][fromy] == 5) {
 				//is White Pawn advancing to end of board
@@ -330,11 +338,14 @@ public static void main(String[] args) {
 		
 			if(Check('w',Board.board)) {
 				System.out.println("Check");
+				inCheckB = true;
 				if(isCheckmate('b')) {
 					System.out.println("Checkmate");
 					System.out.println("White wins");
 					System.exit(0);
 				}
+			} else {
+				inCheckB = false;
 			}
 			
 		
@@ -410,6 +421,11 @@ public static void main(String[] args) {
 					System.out.println("Illegal move, try again");
 				}
 				
+				if(Check('w',Board.board) && inCheckB == false) {
+					valid = false;
+					System.out.println("Illegal move, try again");
+				}
+				
 			}	
 			if(Board.board[fromx][fromy] == 11) {
 				//is Black Pawn advancing to end of board
@@ -454,11 +470,14 @@ public static void main(String[] args) {
 			printBoard(Board.board);
 			if(Check('b',Board.board)) {
 				System.out.println("Check");
+				inCheckW = true;
 				if(isCheckmate('w')) {
 					System.out.println("Checkmate");
 					System.out.println("Black wins");
 					System.exit(0);
 				}
+			} else {
+				inCheckW = false;
 			}
 		
 			
